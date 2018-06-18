@@ -11,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -32,7 +33,14 @@ public class UsuarioResource {
     public List<Usuario> getListaUsuariosJSON() {
         return DaoUsuario.listarTodosUsuarios();
     }
-
+    
+    @GET
+    @Path("/{cpfUsuario}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Usuario getUsuarioPeloID(@PathParam("cpfUsuario") String cpfUsuario){
+        return DaoUsuario.retornaUsuarioPeloCpf(Long.parseLong(cpfUsuario));
+    }
+    
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(Usuario usuario) {

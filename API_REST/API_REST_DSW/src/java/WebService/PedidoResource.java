@@ -1,5 +1,6 @@
 package WebService;
 
+import Model.Pedido;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -7,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -24,14 +26,10 @@ public class PedidoResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    @Path("/{numPedido}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Pedido getPedido(@PathParam("numPedido") String numPedido) {
+        return null;
     }
 
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
-    }
 }

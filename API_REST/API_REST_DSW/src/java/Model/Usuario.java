@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Usuario implements Serializable{
     private String nomeUsuario;
     private String email;
     private boolean administrador;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
 
     public Long getID() {
