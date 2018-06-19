@@ -28,6 +28,7 @@ public class Pedido implements Serializable{
     @JoinColumn(name = "pedido_id")
     private List<ItemPedido> itensPedido;
     private Double valorTotal;
+    private Boolean entregue;
 
     public Long getID() {
         return ID;
@@ -59,6 +60,14 @@ public class Pedido implements Serializable{
 
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public Boolean getEntregue() {
+        return entregue;
+    }
+
+    public void setEntregue(Boolean entregue) {
+        this.entregue = entregue;
     }
     
 }

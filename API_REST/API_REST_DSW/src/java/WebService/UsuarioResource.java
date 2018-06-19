@@ -1,7 +1,8 @@
 package WebService;
 
-import DAO.Dao;
+import DAO.DaoPedido;
 import DAO.DaoUsuario;
+import Model.Pedido;
 import Model.Usuario;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -38,12 +39,19 @@ public class UsuarioResource {
     @Path("/{cpfUsuario}")
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario getUsuarioPeloID(@PathParam("cpfUsuario") String cpfUsuario){
-        return DaoUsuario.retornaUsuarioPeloCpf(Long.parseLong(cpfUsuario));
+        return DaoUsuario.retornaUsuarioPeloCpf(cpfUsuario);
     }
+    
+//    @GET
+//    @Path("/{cpfUsuario}/Pedidos")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Pedido> getListaPedidosUsuario(@PathParam("cpfUsuario") String cpfUsuario){
+//        return DaoPedido.listarTodosPedidosDoCliente(cpfUsuario);
+//    }
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(Usuario usuario) {
-        Dao.salvar(usuario);
+    public void putUsuario(Usuario usuario) {
+        DaoPedido.salvar(usuario);
     }
 }

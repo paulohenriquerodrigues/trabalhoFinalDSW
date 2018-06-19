@@ -22,12 +22,12 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long ID;
-    private Long cpf;    
+    private String cpf;    
     private String nomeCompleto;    
     private String nomeUsuario;
     private String email;
     private boolean administrador;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     public Long getID() {
@@ -38,11 +38,11 @@ public class Usuario implements Serializable{
         this.ID = ID;
     }
     
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

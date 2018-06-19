@@ -1,5 +1,6 @@
 package WebService;
 
+import DAO.DaoPedido;
 import Model.Pedido;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -29,7 +30,13 @@ public class PedidoResource {
     @Path("/{numPedido}")
     @Produces(MediaType.APPLICATION_JSON)
     public Pedido getPedido(@PathParam("numPedido") String numPedido) {
-        return null;
+        return DaoPedido.retornaPedido(Integer.parseInt(numPedido));
+    }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void putPedido(Pedido pedido){
+        DaoPedido.salvar(pedido);
     }
 
 }
