@@ -17,6 +17,6 @@ public class DaoPedido extends Dao{
     }
     
     public static List<Pedido> listarTodosPedidosDoCliente(String cpfCliente){
-        return getEm().createQuery("SELECT P FROM Pedido P WHERE P.cliente.cpf = " + cpfCliente).getResultList();
+        return getEm().createQuery("SELECT P FROM Pedido P WHERE P.cliente.cpf = '" + cpfCliente + "'").getResultList();
     }
 }

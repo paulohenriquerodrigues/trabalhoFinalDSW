@@ -25,6 +25,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(WebService.PedidoResource.class);
+        resources.add(WebService.ProdutoResource.class);
         resources.add(WebService.UsuarioResource.class);
     }
     
