@@ -3,3 +3,18 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.index{
+  text-align: center;
+}
+
+.index-header {
+  background-color: royalblue;
+  height: 5%;
+  padding: 20px;
+  color: white;
+}
+
+.index-title {
+  font-size: 1.5em;
+}
