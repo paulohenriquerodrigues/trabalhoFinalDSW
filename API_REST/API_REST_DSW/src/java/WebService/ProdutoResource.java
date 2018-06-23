@@ -40,7 +40,7 @@ public class ProdutoResource {
     public Boolean getImagem(@PathParam("caminhoImagem") String caminhoImagem){
         File file = new File("D:/Engenharia de Software/GitHub/trabalhoFinalDSW/API_REST/API_REST_DSW/src/imagens/" + caminhoImagem);
         return file.exists();
-    }
+    }    
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

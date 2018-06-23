@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 function criaPaginas(Produtos) {
     let totalPaginas = Math.trunc(Produtos.length / 9);
@@ -16,10 +18,35 @@ function criaPaginas(Produtos) {
 
 function criaPagina(numPagina){
    return <PaginationItem>
-            <PaginationLink href="#">
-                {numPagina}
-            </PaginationLink>
-        </PaginationItem>
+              <PaginationLink href="#">
+                  {numPagina}
+              </PaginationLink>
+          </PaginationItem>
+}
+
+function criaCards(){
+    return <div>
+            <section class="choice-grid">
+                <Card>
+                    <CardImg src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" className="card-img float-left" />
+                    <CardBody>
+                        <CardTitle>Card title</CardTitle>
+                        <CardSubtitle>Card subtitle</CardSubtitle>
+                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                        <Button>Button</Button>
+                    </CardBody>
+                </Card>
+                <Card>
+                    <CardImg src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" className="float-left" />
+                    <CardBody>
+                        <CardTitle>Card title</CardTitle>
+                        <CardSubtitle>Card subtitle</CardSubtitle>
+                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                        <Button>Button</Button>
+                    </CardBody>
+                </Card>
+            </section>
+        </div>
 }
 
 class Home extends Component {
@@ -35,16 +62,17 @@ class Home extends Component {
             return response.json();
         }).then((produtos) => {
             this.setState( {produtos} );
-            console.log(produtos);
         })
     }
 
     componentWillMount(){
         this.retornaProdutos();
     }
+
     render() {
       return (
         <div>
+            {criaCards()}
             <Pagination size="md">
                 <PaginationItem>
                     <PaginationLink previous href="#" />
