@@ -40,11 +40,12 @@ function criaLinha(cards){
     </div>
 }
 
-function criaCard(caminho, titulo, texto){
+function criaCard(caminho, titulo, texto, preco){
     return <Card>
-        <CardImg top width="100%" src={caminho} />
+        <CardImg top width="30%" src={caminho} height="200px" />
         <CardBody>
             <CardTitle>{titulo}</CardTitle>
+            <CardSubtitle>{preco}</CardSubtitle>
             <CardText>{texto}</CardText>
             <Button>Comprar</Button>
         </CardBody>
@@ -59,20 +60,19 @@ function criaCards(produtos){
 
     let cards = [];
 
+    let contador = 0;
     for (let i = 1; i <= totalLinhas; i++){
         let cardsLinhas = [];
 
         for (let j = 0; j < 3; j++){
-            let produto = produtos[j*i];
-            let caminhoImagem = "";
-            let nomeProduto = "";
-            let descricao = "";
+            let produto = produtos[contador];
+            contador++;
 
             if (produto) {
-                caminhoImagem = produto.caminhoImagem;
-                nomeProduto = produto.nome;
-                descricao = produto.descricao;
-                cardsLinhas[j] = criaCard(caminhoImagem, nomeProduto, descricao);
+                cardsLinhas[j] = criaCard("http://localhost:8080/API_REST_DSW/webresources/Imagem/" + produto.caminhoImagem,
+                                          produto.nome,
+                                          produto.descricao,
+                                          "R$" + produto.preco);
             }
         }
 
