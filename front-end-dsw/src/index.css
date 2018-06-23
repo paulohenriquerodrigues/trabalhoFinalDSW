@@ -1,20 +1,26 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
 .index{
-  text-align: center;
+    text-align: center;
 }
 
 .index-header {
-  background-color: royalblue;
-  height: 5%;
-  padding: 20px;
-  color: white;
+    background-color: royalblue;
+    height: 5%;
+    padding: 20px;
+    color: white;
+}
+.index-footer {
+    background-color: royalblue;
+    height: 5%;
+    padding: 20px;
+    color: white;
 }
 
 .index-title {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
