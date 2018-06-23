@@ -24,7 +24,7 @@ public class Usuario implements Serializable{
     private Long ID;
     private String cpf;    
     private String nomeCompleto;    
-    private String nomeUsuario;
+    private String senha;
     private String email;
     private boolean administrador;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -54,14 +54,6 @@ public class Usuario implements Serializable{
         this.nomeCompleto = nomeCompleto;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -85,5 +77,14 @@ public class Usuario implements Serializable{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     
 }
