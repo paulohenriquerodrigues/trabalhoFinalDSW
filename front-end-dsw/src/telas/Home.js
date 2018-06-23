@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardSubtitle, Row, Col, Button } from 'reactstrap';
 
 function criaPaginas(Produtos) {
     let totalPaginas = Math.trunc(Produtos.length / 9);
@@ -24,29 +24,44 @@ function criaPagina(numPagina){
           </PaginationItem>
 }
 
-function criaCards(){
-    return <div>
-            <section class="choice-grid">
-                <Card>
-                    <CardImg src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" className="card-img float-left" />
-                    <CardBody>
-                        <CardTitle>Card title</CardTitle>
-                        <CardSubtitle>Card subtitle</CardSubtitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        <Button>Button</Button>
-                    </CardBody>
-                </Card>
-                <Card>
-                    <CardImg src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" className="float-left" />
-                    <CardBody>
-                        <CardTitle>Card title</CardTitle>
-                        <CardSubtitle>Card subtitle</CardSubtitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        <Button>Button</Button>
-                    </CardBody>
-                </Card>
-            </section>
-        </div>
+function criaLinha(cards){
+   return <div>
+        <Row>
+            <Col>
+                {cards[0]}
+            </Col>
+            <Col>
+                {cards[1]}
+            </Col>
+            <Col>
+                {cards[2]}
+            </Col>
+        </Row>
+    </div>
+}
+
+function criaCard(){
+
+}
+
+function criaCards(Produtos){
+    let totalLinhas = Math.trunc(Produtos.length / 3);
+
+    if (Produtos.length % 3 != 0)
+        totalLinhas++;
+
+    let cards = [];
+
+    for (let i = 0; i < totalLinhas; i++){
+        let aux = i;
+        let cardsLinhas = [];
+        for (let j = 0; j < aux; j++){
+            cardsLinhas[j] = criaCard();
+        }
+
+        cards[i] = criaLinha(cardsLinhas);
+    }
+    return cards
 }
 
 class Home extends Component {
@@ -72,7 +87,7 @@ class Home extends Component {
     render() {
       return (
         <div>
-            {criaCards()}
+            {criaCards(this.state.produtos)}
             <Pagination size="md">
                 <PaginationItem>
                     <PaginationLink previous href="#" />
