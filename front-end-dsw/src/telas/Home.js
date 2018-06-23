@@ -40,8 +40,15 @@ function criaLinha(cards){
     </div>
 }
 
-function criaCard(){
-
+function criaCard(caminho, titulo, texto){
+    return <Card>
+        <CardImg top width="100%" src={caminho} />
+        <CardBody>
+            <CardTitle>{titulo}</CardTitle>
+            <CardText>{texto}</CardText>
+            <Button>Comprar</Button>
+        </CardBody>
+    </Card>
 }
 
 function criaCards(Produtos){
@@ -52,14 +59,14 @@ function criaCards(Produtos){
 
     let cards = [];
 
-    for (let i = 0; i < totalLinhas; i++){
-        let aux = i;
+    for (let i = 1; i <= totalLinhas; i++){
         let cardsLinhas = [];
-        for (let j = 0; j < aux; j++){
-            cardsLinhas[j] = criaCard();
+
+        for (let j = 0; j < 3; j++){
+            cardsLinhas[j] = criaCard("", "CAMISETA" + j, "TESTE");
         }
 
-        cards[i] = criaLinha(cardsLinhas);
+        cards[i - 1] = criaLinha(cardsLinhas);
     }
     return cards
 }
