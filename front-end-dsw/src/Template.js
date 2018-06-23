@@ -40,7 +40,7 @@ class Template extends Component {
                 </main>
 
                 <footer className="index-footer">
-                    <h5>Acadêmicos Ivens Muller e Paulo H. Rodrigues</h5>
+                    <h5>Acadêmicos Ivens D. Müller e Paulo H. Rodrigues</h5>
                 </footer>
 
             </div>
