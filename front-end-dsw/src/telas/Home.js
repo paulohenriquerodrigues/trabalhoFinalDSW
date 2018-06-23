@@ -51,10 +51,10 @@ function criaCard(caminho, titulo, texto){
     </Card>
 }
 
-function criaCards(Produtos){
-    let totalLinhas = Math.trunc(Produtos.length / 3);
+function criaCards(produtos){
+    let totalLinhas = Math.trunc(produtos.length / 3);
 
-    if (Produtos.length % 3 != 0)
+    if (produtos.length % 3 != 0)
         totalLinhas++;
 
     let cards = [];
@@ -63,7 +63,17 @@ function criaCards(Produtos){
         let cardsLinhas = [];
 
         for (let j = 0; j < 3; j++){
-            cardsLinhas[j] = criaCard("", "CAMISETA" + j, "TESTE");
+            let produto = produtos[j*i];
+            let caminhoImagem = "";
+            let nomeProduto = "";
+            let descricao = "";
+
+            if (produto) {
+                caminhoImagem = produto.caminhoImagem;
+                nomeProduto = produto.nome;
+                descricao = produto.descricao;
+                cardsLinhas[j] = criaCard(caminhoImagem, nomeProduto, descricao);
+            }
         }
 
         cards[i - 1] = criaLinha(cardsLinhas);
