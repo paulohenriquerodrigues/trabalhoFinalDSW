@@ -7,8 +7,7 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            produtos: [],
-            carrinho: []
+            produtos: []
         }
     }
 
@@ -44,14 +43,18 @@ class Home extends Component {
         let produto = this.state.produtos[document.activeElement.id];
         if (produto){
             let achou = false;
-            for (let i = 0; i < this.state.carrinho.length; i++){
-                if (this.state.carrinho[i].ID === produto.ID)
+            let carrinho = UserProfile.getCarrinho();
+
+            for (let i = 0; i < carrinho.length; i++){
+                if (carrinho[i].ID === produto.ID)
                     achou = true;
             }
+
             if (!achou)
-                this.state.carrinho[this.state.carrinho.length] = produto;
+                carrinho[carrinho.length] = produto;
+
+            UserProfile.setCarrinho(carrinho);
         }
-        UserProfile.setCarrinho(this.state.carrinho);
     }
 
     criaCard(caminho, titulo, texto, preco, id){
