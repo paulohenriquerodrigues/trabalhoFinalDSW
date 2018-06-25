@@ -2,6 +2,8 @@ package WebService;
 
 import DAO.DaoPedido;
 import Model.Pedido;
+import Model.Produto;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -35,8 +37,8 @@ public class PedidoResource {
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putPedido(Pedido pedido){
-        DaoPedido.salvar(pedido);
+    public void putPedido(List<Produto> listaProdutos){    
+        DaoPedido.criarPedido(listaProdutos);
     }
 
 }

@@ -15,7 +15,8 @@ class Home extends Component {
         fetch("http://localhost:8080/API_REST_DSW/webresources/Produto").then((response) => {
             return response.json();
         }).then((produtos) => {
-            this.setState( {produtos} );
+            if(produtos)
+                this.setState( {produtos} );
         })
     }
 

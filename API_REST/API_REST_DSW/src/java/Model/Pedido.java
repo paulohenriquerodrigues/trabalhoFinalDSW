@@ -24,8 +24,8 @@ public class Pedido implements Serializable{
     private Long ID;
     @ManyToOne
     private Usuario cliente;    
-    @OneToMany(cascade = CascadeType.REMOVE)    
-    @JoinColumn(name = "pedido_id")
+    @OneToMany(cascade = CascadeType.ALL)    
+    @JoinColumn(name = "pedido_id")    
     private List<ItemPedido> itensPedido;
     private Double valorTotal;
     private Boolean entregue;

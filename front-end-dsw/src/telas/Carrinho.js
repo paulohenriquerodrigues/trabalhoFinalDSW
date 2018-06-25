@@ -3,7 +3,7 @@ import UserProfile from "./Usuario.js";
 import {Table, Button} from 'reactstrap';
 import ReactDOM from 'react-dom';
 import Template from '../Template';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 
 class Page2 extends Component {
 
@@ -58,11 +58,34 @@ class Page2 extends Component {
     return rows;
   }
 
+  finalizarCompra(){
+    let carrinho = UserProfile.getCarrinho();
+
+    if (carrinho.length === 0){
+      alert("Seu carrinho está vazio!");
+    }else{
+      fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido", {
+          method: "PUT",
+          headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }),
+          body: JSON.stringify(carrinho)
+      }).then(function (result) {
+          alert(result);
+          UserProfile.setCarrinho([]);
+          ReactDOM.render(<BrowserRouter>
+                              <Template />
+                          </BrowserRouter>,
+                          document.getElementById('root'));
+      });
+    }
+  }
+
   render() {
     return (
       <div>
-        <h2>
-
+        <h2>Carrinho
         </h2>
           <Table hover>
               <thead>
@@ -78,6 +101,7 @@ class Page2 extends Component {
                   {this.criaTabelaCarrinho()}
               </tbody>
           </Table>
+          <Button color="primary" size="lg" onClick={this.finalizarCompra.bind(this)}>Finalizar Compra</Button>
       </div>
     );
   }
