@@ -96,6 +96,7 @@ class Home extends Component {
             }
 
             cards[i - 1] = this.criaLinha(cardsLinhas);
+             console.log(UserProfile.getCpf());
         }
 
         return cards
