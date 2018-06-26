@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Col, Row, Container, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import userProfile from './Usuario.js';
+
 
 
 class Login extends React.Component {
@@ -10,13 +12,16 @@ class Login extends React.Component {
     retornaUsuario() {
         let cpf = document.getElementById("cpf").value;
         let senha = document.getElementById("senha").value;
-        let valida = false;
+        var valida = false;
         fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
         .then(dataWrappedByPromise => dataWrappedByPromise.json())
                 .then(data => {
-                    console.log(data)
-                })
-
+                 if(data == true){
+                     console.log('logou');
+                     userProfile.setCpf(cpf);
+                     console.log(userProfile.getCpf())
+                 }
+                });
     }
 
     componentWillMount() {
