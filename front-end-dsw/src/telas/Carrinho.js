@@ -64,21 +64,25 @@ class Page2 extends Component {
     if (carrinho.length === 0){
       alert("Seu carrinho está vazio!");
     }else{
-      fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido", {
-          method: "PUT",
-          headers: new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }),
-          body: JSON.stringify(carrinho)
-      }).then(function (result) {
-          alert(result);
-          UserProfile.setCarrinho([]);
-          ReactDOM.render(<BrowserRouter>
-                              <Template />
-                          </BrowserRouter>,
-                          document.getElementById('root'));
-      });
+        if (UserProfile.getCpf() === ""){
+            alert("Usuário não está logado! Por favor, vá para a página de login e efetue seu login ou cadastro!");
+        }else {
+            fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido/" + UserProfile.getCpf(), {
+                method: "PUT",
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(carrinho)
+            }).then(function (result) {
+                alert(result);
+                UserProfile.setCarrinho([]);
+                ReactDOM.render(<BrowserRouter>
+                        <Template/>
+                    </BrowserRouter>,
+                    document.getElementById('root'));
+            });
+        }
     }
   }
 

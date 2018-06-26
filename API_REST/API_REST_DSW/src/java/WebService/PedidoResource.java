@@ -3,6 +3,7 @@ package WebService;
 import DAO.DaoPedido;
 import Model.Pedido;
 import Model.Produto;
+import Model.Sessoes;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -36,9 +37,11 @@ public class PedidoResource {
     }
     
     @PUT
+    @Path("/{cpfUsuario}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putPedido(List<Produto> listaProdutos){    
-        DaoPedido.criarPedido(listaProdutos);
+    public void putPedido(List<Produto> listaProdutos, @PathParam("cpfUsuario") String cpfUsuario){    
+        System.out.println(Sessoes.getInstance().retornaUsuarioNaSessao(cpfUsuario));
+        DaoPedido.criarPedido(listaProdutos, Sessoes.getInstance().retornaUsuarioNaSessao(cpfUsuario));
     }
 
 }

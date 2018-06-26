@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.Usuario;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,9 +21,11 @@ public class DaoUsuario extends Dao{
         else return null;
     }    
     
-    public static boolean verificaSeExisteUsuario(String cpf, String senha){        
-        List<Usuario> usuarios = getEm().createQuery("SELECT U FROM Usuario U WHERE U.cpf like " + cpf + " AND U.senha like " + senha).getResultList();
-        return !usuarios.isEmpty();
+    public static Object verificaSeExisteUsuario(String cpf, String senha){        
+        List<Object> usuarios = getEm().createQuery("SELECT U FROM Usuario U WHERE U.cpf like " + cpf + " AND U.senha like " + senha).getResultList();            
+        if (!usuarios.isEmpty())
+            return usuarios.get(0);
+        else return null;
     }
     
 }

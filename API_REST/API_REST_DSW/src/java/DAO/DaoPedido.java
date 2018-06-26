@@ -3,6 +3,7 @@ package DAO;
 import Model.ItemPedido;
 import Model.Pedido;
 import Model.Produto;
+import Model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class DaoPedido extends Dao{
         return getEm().createQuery("SELECT P FROM Pedido P WHERE P.cliente.cpf = '" + cpfCliente + "'").getResultList();
     }
     
-    public static void criarPedido(List<Produto> produtos){
+    public static void criarPedido(List<Produto> produtos, Usuario cliente){
         List<ItemPedido> listaItens = new ArrayList<>();
         int contador = 1;
         Double valorTotal = 0.0;
@@ -33,12 +34,14 @@ public class DaoPedido extends Dao{
             item.setProduto(p);
             item.setQuantidade(1);
             valorTotal += p.getPreco();
+            listaItens.add(item);
             contador++;
         }
         Pedido p = new Pedido();
         p.setEntregue(false);
         p.setItensPedido(listaItens);
         p.setValorTotal(valorTotal);
+        p.setCliente(cliente);
         salvar(p);
     }
 }
