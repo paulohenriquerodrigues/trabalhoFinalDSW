@@ -36,6 +36,12 @@ public class PedidoResource {
         return DaoPedido.retornaPedido(Integer.parseInt(numPedido));
     }
     
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Pedido> getTodosPedidos(){
+        return DaoPedido.listarTodosPedidos();
+    }
+    
     @PUT
     @Path("/{cpfUsuario}")
     @Consumes(MediaType.APPLICATION_JSON)

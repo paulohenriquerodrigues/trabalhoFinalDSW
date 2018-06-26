@@ -20,8 +20,8 @@ public class DaoPedido extends Dao{
         else return null;
     }
     
-    public static List<Pedido> listarTodosPedidosDoCliente(String cpfCliente){
-        return getEm().createQuery("SELECT P FROM Pedido P WHERE P.cliente.cpf = '" + cpfCliente + "'").getResultList();
+    public static List<Pedido> listarTodosPedidos(){
+        return getEm().createQuery("SELECT P FROM Pedido P").getResultList();
     }
     
     public static void criarPedido(List<Produto> produtos, Usuario cliente){

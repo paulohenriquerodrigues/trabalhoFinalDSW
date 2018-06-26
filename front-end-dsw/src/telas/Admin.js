@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table} from 'reactstrap';
+import {Table, Button} from 'reactstrap';
 
 
 class Admin extends React.Component {
@@ -7,21 +7,66 @@ class Admin extends React.Component {
     constructor() {
         super();
         this.state = {
-            lista: []
+            listaUsuarios: [],
+            listaPedidos: []
         }
     }
 
     componentDidMount() {
-        fetch('http://localhost:18397/API_REST_DSW/webresources/Usuario')
+        fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario')
             .then(res => res.json())
             .then(res => {
                 this.setState({
-                    lista: res
+                    listaUsuarios: res
                 })
             })
             .catch(error => {
                 console.log(error)
+            });
+        fetch('http://localhost:8080/API_REST_DSW/webresources/Pedido')
+            .then(res => res.json())
+            .then((Pedido) => {
+                this.setState({listaPedidos : Pedido});
             })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    clickConfirmarPedido(){
+
+    }
+
+    criaRow(pedido, nomeCliente, valorTotal, entregue, id){
+        return <tr>
+            <td>{pedido}</td>
+            <td>{nomeCliente}</td>
+            <td>{valorTotal}</td>
+            <td>{entregue}</td>
+            <td><Button id={id} onClick={this.clickConfirmarPedido().bind(this)}>Confirmar</Button></td>
+        </tr>
+    }
+
+    criaRowsPedidos(){
+        let rows = [];
+
+        for (let i = 0; i < this.state.listaPedidos.length; i++){
+            let nomeCliente = "";
+            let entregue = "Não";
+            if (this.state.listaPedidos[i].cliente){
+                nomeCliente = this.stsate.listaPedidos[i].cliente.nome;
+            }
+            if (this.state.listaPedidos[i].entregue === true){
+                entregue = "Sim";
+            }
+            rows[i] = this.criaRow(this.state.listaPedidos[i].ID,
+                                   nomeCliente,
+                                   "R$" + this.state.listaPedidos[i].valorTotal,
+                                   entregue,
+                                   i);
+        }
+
+        return rows;
     }
 
     render() {
@@ -29,6 +74,7 @@ class Admin extends React.Component {
             <div>
                 <h2>Admin</h2>
 
+                <h3>Clientes</h3>
                 <Table hover>
                     <thead>
                     <tr>
@@ -39,7 +85,7 @@ class Admin extends React.Component {
                     </thead>
                     <tbody>
 
-                    {this.state.lista.map(function (e) {
+                    {this.state.listaUsuarios.map(function (e) {
 
                         return (<tr>
                             <td>{e.nomeCompleto}</td>
@@ -49,6 +95,22 @@ class Admin extends React.Component {
                     })
                     }
 
+                    </tbody>
+                </Table>
+
+                <h3>Pedidos</h3>
+                <Table hover>
+                    <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Nome Cliente</th>
+                        <th>Valor total</th>
+                        <th>Entregue</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {this.criaRowsPedidos()}
                     </tbody>
                 </Table>
             </div>
