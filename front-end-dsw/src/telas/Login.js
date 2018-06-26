@@ -8,16 +8,18 @@ class Login extends React.Component {
 
 
     retornaUsuario() {
-        fetch("http://localhost:18397/API_REST_DSW/webresources/Usuario").then((response) => {
-            return response.json();
-        }).then((usuarios) => {
-            this.setState({usuarios});
-            console.log(usuarios);
-        })
+        let cpf = document.getElementById("cpf").value;
+        let senha = document.getElementById("senha").value;
+        let valida = false;
+        fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
+        .then(dataWrappedByPromise => dataWrappedByPromise.json())
+                .then(data => {
+                    console.log(data)
+                })
+
     }
 
     componentWillMount() {
-        this.retornaUsuario();
     }
 
 
@@ -26,15 +28,13 @@ class Login extends React.Component {
             <Container>
                 <Row>
                     <Col sm={{size: 'auto', offset: 1}}><h3>Login</h3>
-                        <Form>
-                            <FormGroup row>
-                                <Input type="text" name="usuario" id="usuario" placeholder="Usuário"/>
-                            </FormGroup>
-                            <FormGroup row>
+
+                                <Input type="text" name="cpf" id="cpf" placeholder="cpf"/>
+
                                 <Input type="password" name="senha" id="senha" placeholder="Senha"/>
-                            </FormGroup>
-                            <Button color="success">Login</Button>
-                        </Form></Col>
+
+                            <Button onClick={this.retornaUsuario.bind(this)}>Login</Button>
+</Col>
 
                     <Col sm={{size: '5', offset: 1}}><h3>Cadastre-se</h3>
                         <Form>
