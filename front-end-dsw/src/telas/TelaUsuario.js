@@ -13,7 +13,7 @@ class TelaUsuario extends Component{
 
     componentWillMount(){
         if (UserProfile.getCpf() !== "") {
-            fetch('http://localhost:8080/API_REST_DSW/webresources/' + UserProfile.getCpf() + '/Pedido')
+            fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/' + UserProfile.getCpf() + '/pedidos')
                 .then(res => res.json())
                 .then((Pedido) => {
                     this.setState({listaPedidos : Pedido});
