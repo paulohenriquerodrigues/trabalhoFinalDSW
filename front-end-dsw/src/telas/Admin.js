@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Table} from 'reactstrap';
+import {Table, Button} from 'reactstrap';
 
 
 class Admin extends React.Component {

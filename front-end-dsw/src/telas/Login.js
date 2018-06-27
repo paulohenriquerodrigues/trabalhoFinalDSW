@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import {Col, Row, Container, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import userProfile from './Usuario.js';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Template from '../Template';
-import Home from './Home';
-import ReactDOM from 'react-dom';
-
 
 
 
@@ -17,25 +12,14 @@ class Login extends React.Component {
     retornaUsuario() {
         let cpf = document.getElementById("cpf").value;
         let senha = document.getElementById("senha").value;
+        var valida = false;
         fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
         .then(dataWrappedByPromise => dataWrappedByPromise.json())
                 .then(data => {
                  if(data == true){
-                     alert("Logado com Sucesso!");
+                     console.log('logou');
                      userProfile.setCpf(cpf);
-                     console.log(userProfile.getCpf());
-
-                     ReactDOM.render(<BrowserRouter>
-                             <Template/>
-                         </BrowserRouter>,
-                         document.getElementById('root'))
-
-                 } else
-                 {alert("CPF e/ou Senha Inválido(s)");
-                     ReactDOM.render(<BrowserRouter>
-                             <Template/>
-                         </BrowserRouter>,
-                         document.getElementById('root'))
+                     console.log(userProfile.getCpf())
                  }
                 });
     }
