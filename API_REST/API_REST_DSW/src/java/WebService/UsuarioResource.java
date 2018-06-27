@@ -50,14 +50,14 @@ public class UsuarioResource {
         
     @GET
     @Path("/buscar")
-    public boolean getVerificaSeExisteUsuario(@QueryParam("cpfUsuario") String cpfUsuario, 
+    public Usuario getVerificaSeExisteUsuario(@QueryParam("cpfUsuario") String cpfUsuario, 
                                               @QueryParam("senha") String senha){        
         System.out.println(cpfUsuario + " " + senha);        
         Usuario encontrou = (Usuario)DaoUsuario.verificaSeExisteUsuario(cpfUsuario, senha);
         if (encontrou != null){
             Sessoes.getInstance().insereNaSessao(encontrou);
         }
-        return encontrou != null;
+        return encontrou;
     }
     
     @GET
