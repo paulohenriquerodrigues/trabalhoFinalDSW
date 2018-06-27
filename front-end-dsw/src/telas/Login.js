@@ -20,11 +20,12 @@ class Login extends React.Component {
         fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
         .then(dataWrappedByPromise => dataWrappedByPromise.json())
                 .then(data => {
-                 if(data == true){
+                 if(data){
                      alert("Logado com Sucesso!");
                      userProfile.setCpf(cpf);
+                     userProfile.setAdmin(data.administrador);
                      console.log(userProfile.getCpf());
-
+                     console.log(userProfile.getAdmin());
                      ReactDOM.render(<BrowserRouter>
                              <Template/>
                          </BrowserRouter>,
@@ -32,10 +33,7 @@ class Login extends React.Component {
 
                  } else
                  {alert("CPF e/ou Senha Inválido(s)");
-                     ReactDOM.render(<BrowserRouter>
-                             <Template/>
-                         </BrowserRouter>,
-                         document.getElementById('root'))
+
                  }
                 });
     }

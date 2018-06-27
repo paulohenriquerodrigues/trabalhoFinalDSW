@@ -32,7 +32,9 @@ var UserProfile = (function() {
         getCpf: getCpf,
         setCpf: setCpf,
         getCarrinho: getCarrinho,
-        setCarrinho: setCarrinho
+        setCarrinho: setCarrinho,
+        getAdmin: getAdmin,
+        setAdmin: setAdmin
     }
 
 })();
