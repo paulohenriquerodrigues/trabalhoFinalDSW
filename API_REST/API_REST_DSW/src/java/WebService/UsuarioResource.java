@@ -60,12 +60,12 @@ public class UsuarioResource {
         return encontrou != null;
     }
     
-//    @GET
-//    @Path("/{cpfUsuario}/pedidos")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Pedido> getListaPedidosUsuario(@PathParam("cpfUsuario") String cpfUsuario){
-//        return DaoPedido.listarTodosPedidosDoCliente(cpfUsuario);
-//    }    
+    @GET
+    @Path("/{cpfUsuario}/pedidos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Pedido> getListaPedidosUsuario(@PathParam("cpfUsuario") String cpfUsuario){
+        return DaoPedido.listarTodosPedidosDoCliente(cpfUsuario);
+    }    
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

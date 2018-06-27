@@ -1,6 +1,8 @@
+
 var UserProfile = (function() {
     var cpfUser = "";
     var carrinhoCompras = [];
+    var admin = false;
 
     var getCpf = function() {
         return cpfUser;
@@ -18,6 +20,14 @@ var UserProfile = (function() {
         cpfUser = cpf;
     };
 
+    var setAdmin = function(userAdmin){
+        admin = userAdmin;
+    };
+
+    var getAdmin = function(){
+        return admin;
+    }
+
     return {
         getCpf: getCpf,
         setCpf: setCpf,
@@ -26,5 +36,6 @@ var UserProfile = (function() {
     }
 
 })();
+
 
 export default UserProfile;

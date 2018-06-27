@@ -8,6 +8,8 @@ import Home from './telas/Home';
 import Admin from './telas/Admin';
 import Login from './telas/Login';
 import Carrinho from './telas/Carrinho';
+import UserProfile from './telas/Usuario';
+import TelaUsuario from './telas/TelaUsuario';
 
 import loginicone from './imagens/login.png';
 import homeicone from './imagens/home.png';
@@ -16,6 +18,30 @@ import carrinhoicone from './imagens/carrinho.png';
 
 
 class Template extends Component {
+
+    verificaRotas(){
+        let componentAdmin = Admin;
+        let componentLogin = Login;
+
+        if (UserProfile.getCpf() === ""){
+            componentAdmin = Login;
+        }else{
+            if (UserProfile.getAdmin === true){
+                componentLogin = Admin;
+            }else {
+                componentLogin = TelaUsuario;
+                componentAdmin = Login;
+            }
+        }
+
+        return <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/Admin' component={componentAdmin}/>
+            <Route path='/Login' component={componentLogin}/>
+            <Route path='/Carrinho' component={Carrinho}/>
+        </Switch>
+    }
+
     render() {
         return (
             <div className="index">
@@ -31,12 +57,7 @@ class Template extends Component {
 
 
                 <main>
-                    <Switch>
-                        <Route exact path='/' component={Home}/>
-                        <Route path='/Admin' component={Admin}/>
-                        <Route path='/Login' component={Login}/>
-                        <Route path='/Carrinho' component={Carrinho}/>
-                    </Switch>
+                    {this.verificaRotas()}
                 </main>
 
                 <footer className="index-footer">

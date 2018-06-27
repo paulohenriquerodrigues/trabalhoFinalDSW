@@ -24,6 +24,10 @@ public class DaoPedido extends Dao{
         return getEm().createQuery("SELECT P FROM Pedido P").getResultList();
     }
     
+    public static List<Pedido> listarTodosPedidosDoCliente(String cpf){
+        return getEm().createQuery("SELECT P FROM Pedido P WHERE P.cliente.cpf like " + cpf).getResultList();
+    }
+    
     public static void criarPedido(List<Produto> produtos, Usuario cliente){
         List<ItemPedido> listaItens = new ArrayList<>();
         int contador = 1;

@@ -74,7 +74,7 @@ class Page2 extends Component {
                 }),
                 body: JSON.stringify(carrinho)
             }).then(function (result) {
-                alert(result);
+                alert("Pedido criado com sucesso!");
                 UserProfile.setCarrinho([]);
                 ReactDOM.render(<BrowserRouter>
                         <Template/>
