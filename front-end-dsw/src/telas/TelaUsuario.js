@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Table} from 'reactstrap';
+import {Button, Table, Col, Label, Container, Row} from 'reactstrap';
 import UserProfile from "./Usuario";
 
 class TelaUsuario extends Component{
@@ -20,7 +20,7 @@ class TelaUsuario extends Component{
                 })
                 .catch(error => {
                     console.log(error);
-                })
+                });
         }
     }
 
@@ -40,7 +40,7 @@ class TelaUsuario extends Component{
             let nomeCliente = "";
             let entregue = "Não";
             if (this.state.listaPedidos[i].cliente){
-                nomeCliente = this.state.listaPedidos[i].cliente.nome;
+                nomeCliente = this.state.listaPedidos[i].cliente.nomeCompleto;
             }
             if (this.state.listaPedidos[i].entregue === true){
                 entregue = "Sim";
@@ -54,8 +54,42 @@ class TelaUsuario extends Component{
 
         return rows;
     }
+
+    defineDadosCliente(){
+        return <Col sm={{size: 'auto', offset: 1}}>
+            <h3>Dados do Cliente</h3>
+            <Table hover>
+                <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <td>{UserProfile.getNomeCompleto()}</td>
+                    <td>{UserProfile.getCpf()}</td>
+                    <td>{UserProfile.getEmail()}</td>
+                </tbody>
+            </Table>
+        </Col>
+    }
+
+    defineEnderecoCliente(){
+        return <Col sm={{size: '5', offset: 1}}>
+            <h3>Endereço</h3>
+            <Label>{UserProfile.getEndereco()}</Label>
+        </Col>
+    }
+
     render(){
         return <div>
+            <Container>
+                <Row>
+                    {this.defineDadosCliente()}
+                    {this.defineEnderecoCliente()}
+                </Row>
+            </Container>
             <h3>Pedidos do cliente {UserProfile.getCpf()}</h3>
             <Table hover>
                 <thead>

@@ -28,6 +28,7 @@ class Template extends Component {
         }else{
             if (UserProfile.getAdmin === true){
                 componentLogin = Admin;
+                componentAdmin = componentLogin;
             }else {
                 componentLogin = TelaUsuario;
                 componentAdmin = Login;

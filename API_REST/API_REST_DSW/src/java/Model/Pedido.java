@@ -29,6 +29,7 @@ public class Pedido implements Serializable{
     private List<ItemPedido> itensPedido;
     private Double valorTotal;
     private Boolean entregue;
+    private Boolean confirmado;
 
     public Long getID() {
         return ID;
@@ -68,6 +69,14 @@ public class Pedido implements Serializable{
 
     public void setEntregue(Boolean entregue) {
         this.entregue = entregue;
+    }
+
+    public Boolean getConfirmado() {
+        return confirmado;
+    }
+
+    public void setConfirmado(Boolean confirmado) {
+        this.confirmado = confirmado;
     }
     
 }

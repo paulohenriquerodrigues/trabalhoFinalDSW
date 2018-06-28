@@ -3,6 +3,33 @@ var UserProfile = (function() {
     var cpfUser = "";
     var carrinhoCompras = [];
     var admin = false;
+    var nomeCompleto = "";
+    var email = "";
+    var endereco = "";
+
+    var getNomeCompleto = function () {
+        return nomeCompleto;
+    };
+
+    var getEmail = function () {
+        return email;
+    };
+
+    var getEndereco = function () {
+        return endereco;
+    };
+
+    var setNomeCompleto = function (nomeUser) {
+        nomeCompleto = nomeUser;
+    };
+
+    var setEmail = function (emailUser) {
+        email = emailUser;
+    };
+
+    var setEndereco = function (enderecoUser) {
+        endereco = enderecoUser;
+    }
 
     var getCpf = function() {
         return cpfUser;
@@ -34,7 +61,13 @@ var UserProfile = (function() {
         getCarrinho: getCarrinho,
         setCarrinho: setCarrinho,
         getAdmin: getAdmin,
-        setAdmin: setAdmin
+        setAdmin: setAdmin,
+        setEndereco: setEndereco,
+        getEndereco: getEndereco,
+        setEmail: setEmail,
+        getEmail: getEmail,
+        setNomeCompleto: setNomeCompleto,
+        getNomeCompleto: getNomeCompleto
     }
 
 })();

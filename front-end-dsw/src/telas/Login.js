@@ -6,26 +6,39 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Template from '../Template';
 import Home from './Home';
 import ReactDOM from 'react-dom';
-
-
-
+import UserProfile from "./Usuario";
 
 class Login extends React.Component {
-
-
 
     retornaUsuario() {
         let cpf = document.getElementById("cpf").value;
         let senha = document.getElementById("senha").value;
         fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
-        .then(dataWrappedByPromise => dataWrappedByPromise.json())
+            .then(response => {
+                return response.json();
+            })
                 .then(data => {
                  if(data){
                      alert("Logado com Sucesso!");
                      userProfile.setCpf(cpf);
                      userProfile.setAdmin(data.administrador);
-                     console.log(userProfile.getCpf());
-                     console.log(userProfile.getAdmin());
+                     userProfile.setEmail(data.email);
+                     userProfile.setNomeCompleto(data.nomeCompleto);
+
+                     let endereco = "";
+
+                     if (data.endereco){
+                         let rua = data.endereco.rua;
+                         let bairro = data.endereco.bairro;
+                         let cidade = data.endereco.cidade;
+                         let estado = data.endereco.estado;
+                         let pais = data.endereco.pais;
+                         let num = data.endereco.numeroCasa;
+
+                         endereco = rua + ", " + num + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais;
+                         UserProfile.setEndereco(endereco);
+                     }
+
                      ReactDOM.render(<BrowserRouter>
                              <Template/>
                          </BrowserRouter>,
@@ -40,7 +53,6 @@ class Login extends React.Component {
 
     componentWillMount() {
     }
-
 
     render() {
         return (
