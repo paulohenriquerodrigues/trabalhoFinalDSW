@@ -32,8 +32,8 @@
       <file leaf-file-name="Login.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/telas/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+            <state relative-caret-position="496">
+              <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -42,8 +42,8 @@
       <file leaf-file-name="Carrinho.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/telas/Carrinho.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="74" column="46" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="46" />
+            <state relative-caret-position="266">
+              <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="82" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -213,12 +213,12 @@
       <workItem from="1529758348380" duration="641000" />
       <workItem from="1529759701702" duration="4748000" />
       <workItem from="1530056782857" duration="261000" />
-      <workItem from="1530375403771" duration="2798000" />
+      <workItem from="1530375403771" duration="3849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17817000" />
+    <option name="totallyTimeSpent" value="18868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="708" extended-state="0" />
@@ -602,16 +602,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/telas/Carrinho.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="74" column="46" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="46" />
+        <state relative-caret-position="266">
+          <caret line="68" column="12" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="82" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/telas/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="496">
+          <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
           <folding />
         </state>
       </provider>
