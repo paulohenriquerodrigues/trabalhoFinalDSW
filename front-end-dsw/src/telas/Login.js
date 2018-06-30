@@ -51,6 +51,23 @@ class Login extends React.Component {
             });
     }
 
+
+    cadastraUsuario(){
+     var usuario = new Object();
+     usuario.cpf = document.getElementById('cpfCadastro').value;
+     usuario.nomeCompleto = document.getElementById('nome').value;
+     usuario.senha = document.getElementById('senhaCadastro').value;
+     usuario.email = document.getElementById('email').value;
+     usuario.administrador = document.getElementById('administrador').value;
+
+
+
+        console.log(JSON.stringify(usuario));
+
+
+    }
+
+
     componentWillMount() {
     }
 
@@ -79,7 +96,7 @@ class Login extends React.Component {
                         <Input type="text" name="estado" id="estado" placeholder="Estado"/><br/>
                         <Input type="text" name="pais" id="pais" placeholder="País"/><br/>
                         <Input type="number" name="cep" id="cep" placeholder="CEP"/><br/>
-                        <Button  color="success">Cadastrar</Button>
+                        <Button onClick={this.cadastraUsuario.bind(this)}  color="success">Cadastrar</Button>
 
                     </Col>
                 </Row>
