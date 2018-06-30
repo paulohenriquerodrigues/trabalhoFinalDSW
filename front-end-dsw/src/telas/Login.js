@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Col, Row, Container, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import userProfile from './Usuario.js';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Template from '../Template';
 import Home from './Home';
 import ReactDOM from 'react-dom';
@@ -13,42 +13,42 @@ class Login extends React.Component {
     retornaUsuario() {
         let cpf = document.getElementById("cpf").value;
         let senha = document.getElementById("senha").value;
-        fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="'+cpf+'"&senha="'+senha+'"')
+        fetch('http://localhost:8080/API_REST_DSW/webresources/Usuario/buscar?cpfUsuario="' + cpf + '"&senha="' + senha + '"')
             .then(response => {
                 return response.json();
             })
-                .then(data => {
-                 if(data){
-                     alert("Logado com Sucesso!");
-                     userProfile.setCpf(cpf);
-                     userProfile.setAdmin(data.administrador);
-                     userProfile.setEmail(data.email);
-                     userProfile.setNomeCompleto(data.nomeCompleto);
+            .then(data => {
+                if (data) {
+                    alert("Logado com Sucesso!");
+                    userProfile.setCpf(cpf);
+                    userProfile.setAdmin(data.administrador);
+                    userProfile.setEmail(data.email);
+                    userProfile.setNomeCompleto(data.nomeCompleto);
 
-                     let endereco = "";
+                    let endereco = "";
 
-                     if (data.endereco){
-                         let rua = data.endereco.rua;
-                         let bairro = data.endereco.bairro;
-                         let cidade = data.endereco.cidade;
-                         let estado = data.endereco.estado;
-                         let pais = data.endereco.pais;
-                         let num = data.endereco.numeroCasa;
+                    if (data.endereco) {
+                        let rua = data.endereco.rua;
+                        let bairro = data.endereco.bairro;
+                        let cidade = data.endereco.cidade;
+                        let estado = data.endereco.estado;
+                        let pais = data.endereco.pais;
+                        let num = data.endereco.numeroCasa;
 
-                         endereco = rua + ", " + num + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais;
-                         UserProfile.setEndereco(endereco);
-                     }
+                        endereco = rua + ", " + num + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais;
+                        UserProfile.setEndereco(endereco);
+                    }
 
-                     ReactDOM.render(<BrowserRouter>
-                             <Template/>
-                         </BrowserRouter>,
-                         document.getElementById('root'))
+                    ReactDOM.render(<BrowserRouter>
+                            <Template/>
+                        </BrowserRouter>,
+                        document.getElementById('root'))
 
-                 } else
-                 {alert("CPF e/ou Senha Inválido(s)");
+                } else {
+                    alert("CPF e/ou Senha Inválido(s)");
 
-                 }
-                });
+                }
+            });
     }
 
     componentWillMount() {
@@ -60,103 +60,34 @@ class Login extends React.Component {
                 <Row>
                     <Col sm={{size: 'auto', offset: 1}}><h3>Login</h3>
 
-                                <Input type="text" name="cpf" id="cpf" placeholder="cpf"/>
+                        <Input type="text" name="cpf" id="cpf" placeholder="cpf"/>
+                        <br/>
+                        <Input type="password" name="senha" id="senha" placeholder="Senha"/>
+                        <br/>
+                        <Button onClick={this.retornaUsuario.bind(this)} color="success">Login</Button>
+                    </Col>
 
-                                <Input type="password" name="senha" id="senha" placeholder="Senha"/>
+                    <Col sm={{size: '5', offset: 2}}><h3>Cadastre-se</h3>
+                        <Input type="text" name="nome" id="nome" placeholder="Nome"/><br/>
+                        <Input type="text" name="cpf" id="cpfCadastro" placeholder="CPF"/><br/>
+                        <Input type="password" name="senhaCadastro" id="senhaCadastro" placeholder="Senha"/><br/>
+                        <Input type="text" name="email" id="email" placeholder="E-mail"/><br/>
+                        <Input type="text" name="rua" id="rua" placeholder="Rua"/><br/>
+                        <Input type="number" name="numero" id="numero" placeholder="Numero"/><br/>
+                        <Input type="text" name="bairro" id="bairro" placeholder="Bairro"/><br/>
+                        <Input type="text" name="cidade" id="cidade" placeholder="Cidade"/><br/>
+                        <Input type="text" name="estado" id="estado" placeholder="Estado"/><br/>
+                        <Input type="text" name="pais" id="pais" placeholder="País"/><br/>
+                        <Input type="number" name="cep" id="cep" placeholder="CEP"/><br/>
+                        <Button  color="success">Cadastrar</Button>
 
-                            <Button onClick={this.retornaUsuario.bind(this)}>Login</Button>
-</Col>
-
-                    <Col sm={{size: '5', offset: 1}}><h3>Cadastre-se</h3>
-                        <Form>
-                            <FormGroup row>
-                                <Label for="exampleEmail" sm={2}>Email</Label>
-                                <Col sm={10}>
-                                    <Input type="email" name="email" id="exampleEmail"
-                                           placeholder="with a placeholder"/>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="examplePassword" sm={2}>Password</Label>
-                                <Col sm={10}>
-                                    <Input type="password" name="password" id="examplePassword"
-                                           placeholder="password placeholder"/>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="exampleSelect" sm={2}>Select</Label>
-                                <Col sm={10}>
-                                    <Input type="select" name="select" id="exampleSelect"/>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="exampleSelectMulti" sm={2}>Select Multiple</Label>
-                                <Col sm={10}>
-                                    <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple/>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="exampleText" sm={2}>Text Area</Label>
-                                <Col sm={10}>
-                                    <Input type="textarea" name="text" id="exampleText"/>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="exampleFile" sm={2}>File</Label>
-                                <Col sm={10}>
-                                    <Input type="file" name="file" id="exampleFile"/>
-                                    <FormText color="muted">
-                                        This is some placeholder block-level help text for the above input.
-                                        It's a bit lighter and easily wraps to a new line.
-                                    </FormText>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup tag="fieldset" row>
-                                <legend className="col-form-label col-sm-2">Radio Buttons</legend>
-                                <Col sm={10}>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="radio2"/>{' '}
-                                            Option one is this and that—be sure to include why it's great
-                                        </Label>
-                                    </FormGroup>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="radio2"/>{' '}
-                                            Option two can be something else and selecting it will deselect option one
-                                        </Label>
-                                    </FormGroup>
-                                    <FormGroup check disabled>
-                                        <Label check>
-                                            <Input type="radio" name="radio2" disabled/>{' '}
-                                            Option three is disabled
-                                        </Label>
-                                    </FormGroup>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Label for="checkbox2" sm={2}>Checkbox</Label>
-                                <Col sm={{size: 10}}>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="checkbox" id="checkbox2"/>{' '}
-                                            Check me out
-                                        </Label>
-                                    </FormGroup>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup check row>
-                                <Col sm={{size: 10, offset: 2}}>
-                                    <Button color="success">Cadastrar</Button>
-                                </Col>
-                            </FormGroup>
-                        </Form></Col>
+                    </Col>
                 </Row>
             </Container>
 
 
-        );
+    );
     }
-}
+    }
 
-export default Login;
+    export default Login;
