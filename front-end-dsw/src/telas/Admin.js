@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Table} from 'reactstrap';
+import {Button, Table, Container, Input} from 'reactstrap';
 import UserProfile from "./Usuario";
 
 
@@ -73,6 +73,8 @@ class Admin extends React.Component {
         return rows;
     }
 
+    cadastraProduto
+
     render() {
         return (
             <div>
@@ -117,9 +119,20 @@ class Admin extends React.Component {
                         {this.criaRowsPedidos()}
                     </tbody>
                 </Table>
+
+                <h3>Cadastro Pedidos</h3>
+                <Container>
+                    <Input type="text" name="nome" id="nome" placeholder="Nome"/><br/>
+                    <Input type="text" name="descricao" id="descricao" placeholder="Descrição"/><br/>
+                    <Input type="number" name="tamanho" id="tamanho" placeholder="Tamanho"/><br/>
+                    <Input type="number" name="preco" id="preco" placeholder="Preço"/><br/>
+                    <Input type="number" name="qtdDisponivel" id="qtdDisponivel" placeholder="qtd Disponivel"/><br/>
+                    <Input type="text" name="caminhoImagem" id="caminhoImagem" placeholder="CaminhoImagem"/><br/>
+                    <Button  color="success">Cadastrar</Button>
+                </Container>
             </div>
+
         )
-        console.log(UserProfile.getCpf())
     }
 }
     export default Admin;
