@@ -12,7 +12,8 @@ class Admin extends React.Component {
         super();
         this.state = {
             listaUsuarios: [],
-            listaPedidos: []
+            listaPedidos: [],
+            listaProdutosMaisVendidos:[]
         }
     }
 
@@ -31,6 +32,14 @@ class Admin extends React.Component {
             .then(res => res.json())
             .then((Pedido) => {
                 this.setState({listaPedidos : Pedido});
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        fetch('http://localhost:8080/API_REST_DSW/webresources/Produto/10Produtos')
+            .then(res => res.json())
+            .then((Produto) => {
+                this.setState({listaProdutosMaisVendidos : Produto});
             })
             .catch(error => {
                 console.log(error);
@@ -146,7 +155,7 @@ class Admin extends React.Component {
                     </tbody>
                 </Table>
 
-                <h3>Cadastro Pedidos</h3>
+                <h3>Cadastro Produtos</h3>
                 <Container>
                     <Input type="text" name="nome" id="nome" placeholder="Nome"/><br/>
                     <Input type="text" name="descricao" id="descricao" placeholder="Descrição"/><br/>
@@ -156,7 +165,30 @@ class Admin extends React.Component {
                     <Input type="text" name="caminhoImagem" id="caminhoImagem" placeholder="CaminhoImagem"/><br/>
                     <Button onClick={this.cadastraProduto.bind(this)}  color="success">Cadastrar</Button>
                 </Container>
+
+                <h3>10 Produtos Mais Vendidos</h3>
+                <Table hover>
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {this.state.listaProdutosMaisVendidos.map(function (e) {
+                        return (<tr>
+                            <td>{e.nome}</td>
+                        </tr>)
+                    })
+                    }
+
+                    </tbody>
+                </Table>
+
+
             </div>
+
+
 
         )
     }
