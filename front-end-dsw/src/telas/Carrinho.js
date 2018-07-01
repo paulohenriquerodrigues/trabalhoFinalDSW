@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 class Page2 extends Component {
-
   componentWillMount(){
       this.carregaMapa();
   }
