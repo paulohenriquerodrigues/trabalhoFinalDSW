@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Table, Container, Input} from 'reactstrap';
-import UserProfile from "./Usuario";
+import {BrowserRouter} from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import Template from '../Template';
+
 
 
 class Admin extends React.Component {
@@ -73,7 +76,30 @@ class Admin extends React.Component {
         return rows;
     }
 
-    cadastraProduto
+    cadastraProduto(){
+    var produto = new Object();
+    produto.nome = document.getElementById('nome').value;
+    produto.descricao = document.getElementById('descricao').value;
+    produto.tamanho = document.getElementById('tamanho').value;
+    produto.preco = document.getElementById('preco').value;
+    produto.qtdDisponivel = document.getElementById('qtdDisponivel').value;
+    produto.caminhoImagem = document.getElementById('caminhoImagem').value;
+
+        fetch("http://localhost:8080/API_REST_DSW/webresources/Produto", {
+            method: "PUT",
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(produto)
+        }).then(function (result) {
+            alert("Produto Cadastrado com sucesso!");
+            ReactDOM.render(<BrowserRouter>
+                    <Template/>
+                </BrowserRouter>,
+                document.getElementById('root'));
+        });
+    }
 
     render() {
         return (
@@ -128,7 +154,7 @@ class Admin extends React.Component {
                     <Input type="number" name="preco" id="preco" placeholder="Preço"/><br/>
                     <Input type="number" name="qtdDisponivel" id="qtdDisponivel" placeholder="qtd Disponivel"/><br/>
                     <Input type="text" name="caminhoImagem" id="caminhoImagem" placeholder="CaminhoImagem"/><br/>
-                    <Button  color="success">Cadastrar</Button>
+                    <Button onClick={this.cadastraProduto.bind(this)}  color="success">Cadastrar</Button>
                 </Container>
             </div>
 
