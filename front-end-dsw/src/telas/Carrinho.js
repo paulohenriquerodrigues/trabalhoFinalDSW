@@ -18,7 +18,7 @@ class Page2 extends Component {
     if (carrinho.length !== 1) {
 
         for (let i = 0; i < carrinho.length; i++) {
-            if (i != document.activeElement.id)
+            if (i !== document.activeElement.id)
                 novoCarrinho[i - diminuir] = carrinho[i];
             else diminuir = 1;
         }

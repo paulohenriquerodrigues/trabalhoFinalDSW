@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Col, Row, Container, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import {Col, Row, Container, Button, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import userProfile from './Usuario.js';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import Template from '../Template';
-import Home from './Home';
 import ReactDOM from 'react-dom';
 import UserProfile from "./Usuario";
 
@@ -59,7 +58,8 @@ class Login extends React.Component {
      usuario.nomeCompleto = document.getElementById('nome').value;
      usuario.senha = document.getElementById('senhaCadastro').value;
      usuario.email = document.getElementById('email').value;
-     if(document.getElementById('administrador').value === 'on'){
+     console.log(document.getElementById('administrador').checked);
+     if(document.getElementById('administrador').checked == true){
          usuario.administrador = true;
      }else{
          usuario.administrador = false;
@@ -119,7 +119,7 @@ class Login extends React.Component {
                         <Input type="text" name="estado" id="estado" placeholder="Estado"/><br/>
                         <Input type="text" name="pais" id="pais" placeholder="País"/><br/>
                         <Input type="number" name="cep" id="cep" placeholder="CEP"/><br/>
-                        <Input type="checkbox" id="administrador"/>Administrador
+                        <Input type="checkbox" id="administrador"/>Administrador<br/>
                         <Button onClick={this.cadastraUsuario.bind(this)}  color="success">Cadastrar</Button>
 
                     </Col>

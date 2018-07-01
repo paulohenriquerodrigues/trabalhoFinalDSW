@@ -25,10 +25,11 @@ class Template extends Component {
 
         if (UserProfile.getCpf() === ""){
             componentAdmin = Login;
-        }else{
-            if (UserProfile.getAdmin === true){
-                componentLogin = Admin;
-                componentAdmin = componentLogin;
+        }else {
+            if (UserProfile.getAdmin() === true){
+                componentLogin = TelaUsuario;
+                componentAdmin = Admin;
+
             }else {
                 componentLogin = TelaUsuario;
                 componentAdmin = Login;
@@ -37,8 +38,8 @@ class Template extends Component {
 
         return <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path='/Admin' component={componentAdmin}/>
             <Route path='/Login' component={componentLogin}/>
+            <Route path='/Admin' component={componentAdmin}/>
             <Route path='/Carrinho' component={Carrinho}/>
         </Switch>
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Table, Col, Label, Container, Row} from 'reactstrap';
+import {Table, Col, Label, Container, Row} from 'reactstrap';
 import UserProfile from "./Usuario";
 
 class TelaUsuario extends Component{
@@ -83,6 +83,7 @@ class TelaUsuario extends Component{
     }
 
     render(){
+        console.log(UserProfile.getCpf())
         return <div>
             <Container>
                 <Row>

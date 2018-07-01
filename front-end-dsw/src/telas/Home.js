@@ -106,6 +106,7 @@ class Home extends Component {
       return (
         <div>
             {this.criaCards(this.state.produtos)}
+
         </div>
       );
     }

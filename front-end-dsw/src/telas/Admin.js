@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Table} from 'reactstrap';
+import UserProfile from "./Usuario";
 
 
 class Admin extends React.Component {
@@ -46,7 +47,7 @@ class Admin extends React.Component {
             <td>{nomeCliente}</td>
             <td>{valorTotal}</td>
             <td>{entregue}</td>
-            <td><Button id={id} onClick={this.clickConfirmarPedido().bind(this)}>Confirmar</Button></td>
+            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar</Button></td>
         </tr>
     }
 
@@ -57,7 +58,7 @@ class Admin extends React.Component {
             let nomeCliente = "";
             let entregue = "Não";
             if (this.state.listaPedidos[i].cliente){
-                nomeCliente = this.stsate.listaPedidos[i].cliente.nome;
+                nomeCliente = this.state.listaPedidos[i].cliente.nome;
             }
             if (this.state.listaPedidos[i].entregue === true){
                 entregue = "Sim";
@@ -118,6 +119,7 @@ class Admin extends React.Component {
                 </Table>
             </div>
         )
+        console.log(UserProfile.getCpf())
     }
 }
     export default Admin;
