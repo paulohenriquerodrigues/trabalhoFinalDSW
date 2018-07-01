@@ -50,6 +50,7 @@ class Admin extends React.Component {
         let id = document.activeElement.id;
         if (this.state.listaPedidos[id]){
             this.state.listaPedidos[id].entregue = true;
+            console.log(this.state.listaPedidos[id].entregue)
         }
     }
 

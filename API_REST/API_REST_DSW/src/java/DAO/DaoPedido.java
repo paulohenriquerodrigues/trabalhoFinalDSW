@@ -48,4 +48,10 @@ public class DaoPedido extends Dao{
         p.setCliente(cliente);
         salvar(p);
     }
+
+public static void confirmaPagamento(Pedido pedido){
+    pedido.setConfirmado(true);
+    update(pedido);
+}    
+    
 }

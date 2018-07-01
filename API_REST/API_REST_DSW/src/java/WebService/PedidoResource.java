@@ -49,5 +49,11 @@ public class PedidoResource {
         System.out.println(Sessoes.getInstance().retornaUsuarioNaSessao(cpfUsuario));
         DaoPedido.criarPedido(listaProdutos, Sessoes.getInstance().retornaUsuarioNaSessao(cpfUsuario));
     }
+    
+    @PUT
+    @Path("/{idPedido}/confirma")
+    public void confirmaPedido(@PathParam("idPedido") String idPedido){   
+        DaoPedido.confirmaPagamento(DaoPedido.retornaPedido(Integer.parseInt(idPedido)));
+    }
 
 }
