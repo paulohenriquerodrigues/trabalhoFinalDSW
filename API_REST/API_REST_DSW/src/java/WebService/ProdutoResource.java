@@ -40,6 +40,13 @@ public class ProdutoResource {
     public Boolean getImagem(@PathParam("caminhoImagem") String caminhoImagem){
         File file = new File("D:/Engenharia de Software/GitHub/trabalhoFinalDSW/API_REST/API_REST_DSW/src/imagens/" + caminhoImagem);
         return file.exists();
+    }
+
+    @GET
+    @Path("/10Produtos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Produto> produtosMaisVendidos() {
+        return DaoProduto.listar10Produtos();
     }    
 
     @PUT

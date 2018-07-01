@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Template from '../Template';
 import { BrowserRouter } from 'react-router-dom';
 
+
 class Page2 extends Component {
 
   componentWillMount(){
@@ -95,18 +96,18 @@ class Page2 extends Component {
                 })
                 .then(data => {
                     if (data) {
-                        console.log(data.geometry.location.lat)
+                        var latitude = data.results[0].geometry.location.lat;
+                        var longitude = data.results[0].geometry.location.lng;
 
-                        ReactDOM.render(<BrowserRouter>
-                                <Template/>
-                            </BrowserRouter>,
-                            document.getElementById('root'))
-
+                        console.log(latitude);
+                        console.log(longitude);
                     }
                 });
         }
 
   }
+
+
 
   render() {
     return (
@@ -128,6 +129,13 @@ class Page2 extends Component {
               </tbody>
           </Table>
           <Button color="primary" size="lg" onClick={this.finalizarCompra.bind(this)}>Finalizar Compra</Button>
+
+
+
+
+
+          );
+
       </div>
     );
   }
