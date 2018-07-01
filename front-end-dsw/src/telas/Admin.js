@@ -59,7 +59,8 @@ class Admin extends React.Component {
             <td>{nomeCliente}</td>
             <td>{valorTotal}</td>
             <td>{entregue}</td>
-            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar</Button></td>
+            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar Pgto</Button></td>
+            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Ir para Entrega</Button></td>
         </tr>
     }
 

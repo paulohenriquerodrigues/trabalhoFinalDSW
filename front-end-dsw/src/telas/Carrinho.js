@@ -129,13 +129,6 @@ class Page2 extends Component {
               </tbody>
           </Table>
           <Button color="primary" size="lg" onClick={this.finalizarCompra.bind(this)}>Finalizar Compra</Button>
-
-
-
-
-
-          );
-
       </div>
     );
   }
