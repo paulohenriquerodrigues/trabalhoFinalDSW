@@ -34,7 +34,7 @@ class Login extends React.Component {
                         let pais = data.endereco.pais;
                         let num = data.endereco.numeroCasa;
 
-                        endereco = rua + ", " + num + ", " + bairro + ", " + cidade + ", " + estado + ", " + pais;
+                        endereco = rua + ", " + num + " - " + bairro + ", " + cidade + " - " + estado + ", " + pais;
                         UserProfile.setEndereco(endereco);
                     }
 

@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 class Page2 extends Component {
 
   componentWillMount(){
+      this.carregaMapa();
   }
 
   clickRemover(){
@@ -60,7 +61,7 @@ class Page2 extends Component {
   finalizarCompra(){
     let carrinho = UserProfile.getCarrinho();
 
-    if (carrinho.length === 0){
+      if (carrinho.length === 0){
       alert("Seu carrinho está vazio!");
     }else{
         if (UserProfile.getCpf() === ""){
@@ -83,6 +84,28 @@ class Page2 extends Component {
             });
         }
     }
+  }
+
+  carregaMapa(){
+     var endereco = UserProfile.getEndereco();
+        if(UserProfile.getEndereco()) {
+            fetch('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB1qocYotYPTrrbEUXQlZr0W9RQC4I4npU&sensor=false&address=' + endereco)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    if (data) {
+                        console.log(data.geometry.location.lat)
+
+                        ReactDOM.render(<BrowserRouter>
+                                <Template/>
+                            </BrowserRouter>,
+                            document.getElementById('root'))
+
+                    }
+                });
+        }
+
   }
 
   render() {
