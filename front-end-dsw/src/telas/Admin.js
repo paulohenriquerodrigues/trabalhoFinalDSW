@@ -52,15 +52,30 @@ class Admin extends React.Component {
             this.state.listaPedidos[id].entregue = true;
             console.log(this.state.listaPedidos[id].entregue)
         }
+        console.log(id)
+
+        fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido/"+id+"/confirma", {
+            method: "PUT",
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+        }).then(function (result) {
+            ReactDOM.render(<BrowserRouter>
+                    <Template/>
+                </BrowserRouter>,
+                document.getElementById('root'));
+        });
     }
 
-    criaRow(pedido, nomeCliente, valorTotal, entregue, id){
+    criaRow(pedido, nomeCliente, valorTotal, entregue, confirmado, id){
         return <tr>
             <td>{pedido}</td>
             <td>{nomeCliente}</td>
             <td>{valorTotal}</td>
             <td>{entregue}</td>
-            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar Pgto</Button></td>
+            <td>{confirmado}</td>
+            <td><Button id={pedido} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar Pgto</Button></td>
             <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Ir para Entrega</Button></td>
         </tr>
     }
@@ -71,16 +86,20 @@ class Admin extends React.Component {
         for (let i = 0; i < this.state.listaPedidos.length; i++){
             let nomeCliente = "";
             let entregue = "Não";
+            let confirmado = "Não";
             if (this.state.listaPedidos[i].cliente){
-                nomeCliente = this.state.listaPedidos[i].cliente.nome;
+                nomeCliente = this.state.listaPedidos[i].cliente.nomeCompleto;
             }
             if (this.state.listaPedidos[i].entregue === true){
                 entregue = "Sim";
             }
+            if (this.state.listaPedidos[i].confirmado === true){
+                confirmado = "Sim";
+            }
             rows[i] = this.criaRow(this.state.listaPedidos[i].ID,
                                    nomeCliente,
                                    "R$" + this.state.listaPedidos[i].valorTotal,
-                                   entregue,
+                                   entregue, confirmado,
                                    i);
         }
 
@@ -149,6 +168,7 @@ class Admin extends React.Component {
                         <th>Nome Cliente</th>
                         <th>Valor total</th>
                         <th>Entregue</th>
+                        <th>Pago</th>
                         <th></th>
                     </tr>
                     </thead>
