@@ -53,5 +53,10 @@ public static void confirmaPagamento(Pedido pedido){
     pedido.setConfirmado(true);
     update(pedido);
 }    
+
+public static void entregaPedido(Pedido pedido){
+    pedido.setEntregue(true);
+    update(pedido);
+} 
     
 }

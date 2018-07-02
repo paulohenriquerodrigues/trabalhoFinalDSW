@@ -55,5 +55,11 @@ public class PedidoResource {
     public void confirmaPedido(@PathParam("idPedido") String idPedido){   
         DaoPedido.confirmaPagamento(DaoPedido.retornaPedido(Integer.parseInt(idPedido)));
     }
+    
+    @PUT
+    @Path("/{idPedido}/entrega")
+    public void entregaPedido(@PathParam("idPedido") String idPedido){   
+        DaoPedido.entregaPedido(DaoPedido.retornaPedido(Integer.parseInt(idPedido)));
+    }
 
 }
