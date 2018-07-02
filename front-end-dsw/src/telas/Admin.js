@@ -49,12 +49,32 @@ class Admin extends React.Component {
     clickConfirmarPedido(){
         let id = document.activeElement.id;
         if (this.state.listaPedidos[id]){
-            this.state.listaPedidos[id].entregue = true;
-            console.log(this.state.listaPedidos[id].entregue)
+            this.state.listaPedidos[id].confirma = true;
         }
         console.log(id)
 
         fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido/"+id+"/confirma", {
+            method: "PUT",
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+        }).then(function (result) {
+            ReactDOM.render(<BrowserRouter>
+                    <Template/>
+                </BrowserRouter>,
+                document.getElementById('root'));
+        });
+    }
+
+
+    clickEntrega(){
+        let id = document.activeElement.id;
+        if (this.state.listaPedidos[id]){
+            this.state.listaPedidos[id].entregue = true;
+        }
+
+        fetch("http://localhost:8080/API_REST_DSW/webresources/Pedido/"+id+"/entrega", {
             method: "PUT",
             headers: new Headers({
                 'Accept': 'application/json',
@@ -76,7 +96,7 @@ class Admin extends React.Component {
             <td>{entregue}</td>
             <td>{confirmado}</td>
             <td><Button id={pedido} onClick={this.clickConfirmarPedido.bind(this)}>Confirmar Pgto</Button></td>
-            <td><Button id={id} onClick={this.clickConfirmarPedido.bind(this)}>Ir para Entrega</Button></td>
+            <td><Button id={pedido} onClick={this.clickEntrega.bind(this)}>Ir para Entrega</Button></td>
         </tr>
     }
 
